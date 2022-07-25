@@ -28,7 +28,7 @@ class Inbox(db.Model):
     #self.lat = lat
     #self.lon = lon
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
  	return 'Hello World' #HTML  
 
