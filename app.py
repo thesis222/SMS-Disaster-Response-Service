@@ -34,29 +34,28 @@ def home():
 
 @app.route('/process', methods=['POST'])
 def process():
-	content_type = request.headers.get('Content-Type')
-	if content_type !='application/json' :
-		return 'incompatible'
+    content_type = request.headers.get('Content-Type')
+    if content_type !='application/json' :
+        return 'incompatible'
 
-	#JSON to form
-	message = request.json['message']
+    #JSON to form
+    message = request.json['message']
     num = request.json['number']
     lat = request.json['latitude']
     lon = request.json['longitude']
 
     # Load Model and DataTransform
-	model, loaded_tfidfvec = load_model()
+    model, loaded_tfidfvec = load_model()
 
     # Transform Data
-	transformed_message = loaded_tfidfvec.transform([query])
+    transformed_message = loaded_tfidfvec.transform([query])
 
     # Predict query
-	prediction = model.predict(transformed_message)[0]
-    
+    prediction = model.predict(transformed_message)[0]
     smsmsg = Inbox(level= prediction, num = number, message = message, lat = lat, lon = lon )
     db.session.add(smsmsg)
     db.session.commit()
-	return prediction
+    return prediction
 
     
 
