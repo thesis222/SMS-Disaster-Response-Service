@@ -28,7 +28,7 @@ class Inbox(db.Model):
     #self.lat = lat
     #self.lon = lon
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def home():
  	return 'Hello World' #HTML  
 
@@ -73,5 +73,5 @@ def load_model():
     return model, loaded_tfidfvec
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug=True, )
     #db.create_all()
