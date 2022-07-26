@@ -30,7 +30,7 @@ def __init__(self, level, num, msg, lat, lon):
     
 @app.route('/')
 def home():
- 	return 'Hello World' #HTML  
+ 	return render_template('index.html')  
 
 @app.route('/process', methods=['POST'])
 def process():
