@@ -20,14 +20,14 @@ class Inbox(db.Model):
     lat = db.Column(db.Float(50))  
     lon = db.Column(db.Float(50))
 
-    #Create String
-   def __init__(self, level, num, msg, lat, lon):
+#Create String
+def __init__(self, level, num, msg, lat, lon):
     self.level = level
     self.num = num
     self.msg = msg
     self.lat = lat
     self.lon = lon
-
+    
 @app.route('/')
 def home():
  	return 'Hello World' #HTML  
