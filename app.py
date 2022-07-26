@@ -5,20 +5,20 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 #Add Database
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inbox.sqlite3'
+#app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inbox.sqlite3'
 
 #Initialize Database
-db = SQLAlchemy(app)
+#db = SQLAlchemy(app)
 
 #Create model
-class Inbox(db.Model):
-    __tablename__= 'inbox'
-    id = db.Column('student_id', db.Integer, primary_key = True)
-    level = db.Column(db.String(10))
-    num = db.Column(db.String(20))
-    msg = db.Column(db.String(150))
-    lat = db.Column(db.Float(50))  
-    lon = db.Column(db.Float(50))
+#class Inbox(db.Model):
+   # __tablename__= 'inbox'
+    #id = db.Column('student_id', db.Integer, primary_key = True)
+    #level = db.Column(db.String(10))
+    #num = db.Column(db.String(20))
+    #msg = db.Column(db.String(150))
+    #lat = db.Column(db.Float(50))  
+    #lon = db.Column(db.Float(50))
 
     #Create String
     #def __init__(self, level, num, msg, lat, lon):
@@ -73,5 +73,5 @@ def load_model():
     return model, loaded_tfidfvec
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run()
     #db.create_all()
