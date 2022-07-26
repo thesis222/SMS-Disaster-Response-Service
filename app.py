@@ -5,8 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 #Add Database
-app.config ['DATABASE_URL'] = 'postgres://ruvxlwwhcmievw:e0234ccf6a73ae505d15d4e6a816f1d0a386ed66b2eedee1d27cb395243e8739@ec2-54-161-255-125.compute-1.amazonaws.com:5432/ddk9t1ob7o082d'
-app.config ['SECRET_KEY'] = "smsclassification"
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inbox.db'
+app.config ['SECRET_KEY'] = 'smsclassification'
+
 #Initialize Database
 db = SQLAlchemy(app)
 
@@ -29,7 +30,7 @@ def __init__(self, level, num, msg, lat, lon):
     
 @app.route('/')
 def home():
- 	return render_template('index.html', inbox = inbox.query.all() )  
+ 	return 'Hello World' #HTML  
 
 @app.route('/process', methods=['POST'])
 def process():
