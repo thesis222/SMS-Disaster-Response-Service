@@ -73,5 +73,5 @@ def load_model():
     return model, loaded_tfidfvec
 
 if __name__=='__main__':
-    app.run(debug=True, )
+    app.run(debug=True)
     #db.create_all()
