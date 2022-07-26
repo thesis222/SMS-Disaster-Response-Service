@@ -5,14 +5,13 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 #Add Database
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inbox.sqlite3'
+app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgres://ruvxlwwhcmievw:e0234ccf6a73ae505d15d4e6a816f1d0a386ed66b2eedee1d27cb395243e8739@ec2-54-161-255-125.compute-1.amazonaws.com:5432/ddk9t1ob7o082d'
 
 #Initialize Database
 db = SQLAlchemy(app)
 
 #Create model
-class Inbox(db.Model):
-    __tablename__= 'inbox'
+class inbox(db.Model):
     id = db.Column('student_id', db.Integer, primary_key = True)
     level = db.Column(db.String(10))
     num = db.Column(db.String(20))
@@ -30,7 +29,7 @@ def __init__(self, level, num, msg, lat, lon):
     
 @app.route('/')
 def home():
- 	return 'Hello World' #HTML  
+ 	return render_template('index.html', inbox = inbox.query.all() )  
 
 @app.route('/process', methods=['POST'])
 def process():
@@ -73,5 +72,6 @@ def load_model():
     return model, loaded_tfidfvec
 
 if __name__=='__main__':
+    db.create_all()
     app.run()
-    #db.create_all()
+    
