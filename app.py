@@ -32,6 +32,7 @@ def __init__(self, level, num, msg, lat, lon):
 def home():
  	return render_template('home.html')  
 
+
 @app.route('/process', methods=['POST'])
 def process():
     content_type = request.headers.get('Content-Type')
@@ -57,9 +58,6 @@ def process():
     db.session.commit()
     return prediction
 
-
-    return render_template('process.html')
-
     
 
 # Function
@@ -74,6 +72,10 @@ def load_model():
         loaded_tfidfvec = pickle.load(infile)
         
     return model, loaded_tfidfvec
+
+@app.route('/inbox', method ['POST'])
+def inbox():
+    return render_template('inbox.html')
 
 if __name__=='__main__':
     db.create_all()
