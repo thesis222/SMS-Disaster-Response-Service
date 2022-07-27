@@ -56,6 +56,7 @@ def process():
     db.session.add(smsmsg)
     db.session.commit()
     return prediction
+    return render_template('index.html')
 
     
 
