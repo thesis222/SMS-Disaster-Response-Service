@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__)
 #Add Database
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///inbox.db'
 app.config ['SECRET_KEY'] = 'smsclassification'
@@ -78,5 +78,5 @@ def inbox():
 
 if __name__=='__main__':
     db.create_all()
-    app.run(debug=True, use_reloader=False)
+    app.run()
     
