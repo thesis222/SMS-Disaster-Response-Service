@@ -73,7 +73,6 @@ def load_model():
         
     return model, loaded_tfidfvec
 
-@app.route('/inbox', methods =['POST'])
 def inbox():
     return render_template('inbox.html')
 
