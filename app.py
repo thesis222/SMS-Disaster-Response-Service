@@ -50,6 +50,8 @@ def process():
     lat = request.json['latitude']
     lon = request.json['longitude']
 
+    print(message, num, lat, lon)
+    
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
 
