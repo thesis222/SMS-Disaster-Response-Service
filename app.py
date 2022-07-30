@@ -7,7 +7,7 @@ import os
 
 app = Flask(__name__)
 #Add Database
-app.config ['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config ['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("postgres://", "postgresql://", 1)
 app.config ['SECRET_KEY'] = os.environ['SECRET_KEY']
 
 #Initialize Database
