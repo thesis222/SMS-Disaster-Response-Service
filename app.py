@@ -1,6 +1,7 @@
 import pickle
 from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
+import sklearn, numpy
 
 
 app = Flask(__name__)
