@@ -2,12 +2,13 @@ import pickle
 from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 import sklearn, numpy
+import os
 
 
 app = Flask(__name__)
 #Add Database
-app.config ['SQLALCHEMY_DATABASE_URI'] = 'postgres://ruvxlwwhcmievw:e0234ccf6a73ae505d15d4e6a816f1d0a386ed66b2eedee1d27cb395243e8739@ec2-54-161-255-125.compute-1.amazonaws.com:5432/ddk9t1ob7o082d'
-app.config ['SECRET_KEY'] = 'smsclassification'
+app.config ['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config ['SECRET_KEY'] = os.environ['SECRET_KEY']
 
 #Initialize Database
 db = SQLAlchemy(app)
@@ -57,7 +58,7 @@ def process():
     model, loaded_tfidfvec = load_model()
 
     # Transform Data
-    transformed_message = loaded_tfidfvec.transform([query])
+    transformed_message = loaded_tfidfvec.transform([message])
 
     # Predict query
     prediction = model.predict(transformed_message)[0]
