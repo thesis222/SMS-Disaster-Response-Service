@@ -73,6 +73,7 @@ def load_model():
         
     return model, loaded_tfidfvec
 
+@app.route('/inbox', methods=['GET'])
 def inbox():
     return render_template('inbox.html')
 
