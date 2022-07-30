@@ -7,8 +7,8 @@ import os
 
 app = Flask(__name__)
 #Add Database
-app.config ['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("postgres://", "postgresql://", 1)
-app.config ['SECRET_KEY'] = os.environ['SECRET_KEY']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL').replace("postgres://", "postgresql://", 1)
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 
 #Initialize Database
 db = SQLAlchemy(app)
@@ -37,7 +37,9 @@ class Inbox(db.Model):
     
 @app.route('/')
 def home():
- 	return render_template('home.html')  
+    print(os.environ['SECRET_KEY'])
+    return render_template('home.html')  
+    
 
 
 @app.route('/process', methods=['POST'])
