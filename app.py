@@ -4,46 +4,17 @@ from flask_sqlalchemy import SQLAlchemy
 import sklearn, numpy
 import os
 import re
+import dbModel import *
 
 
 app = Flask(__name__)
-#Add Database
-prodURI = os.getenv('DATABASE_URL')
-prodURI = prodURI.replace("postgres://", "postgresql://")
-app.config['SQLALCHEMY_DATABASE_URI'] = prodURI
-app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-
-#Initialize Database
-db = SQLAlchemy(app)
-
-#Create model
-class Inbox(db.Model):
-    id = db.Column('student_id', db.Integer, primary_key = True)
-    level = db.Column(db.String(10))
-    num = db.Column(db.String(20))
-    message = db.Column(db.String(150))
-    lat = db.Column(db.Float(50))  
-    lon = db.Column(db.Float(50))
-
-    def __repr__(self):
-        return '<Inbox %r>' % (self.level)
-
-#Create String
-# def __init__(self, level, num, msg, lat, lon):
-#     self.level = level
-#     self.num = num
-#     self.msg = msg
-#     self.lat = lat
-#     self.lon = lon
 
 
-    
 @app.route('/')
 def home():
     print(os.environ['SECRET_KEY'])
     return render_template('home.html')  
     
-
 
 @app.route('/process', methods=['POST'])
 def process():
@@ -92,6 +63,5 @@ def inbox():
     return render_template('inbox.html')
 
 if __name__=='__main__':
-    db.create_all()
     app.run()
     
