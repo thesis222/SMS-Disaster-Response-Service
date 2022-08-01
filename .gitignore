@@ -1,2 +1,3 @@
 .vscode/
-dbModel.py/
+dbModel.py
+env\Lib\site-packages\alembic\testing\suite\__pycache__
