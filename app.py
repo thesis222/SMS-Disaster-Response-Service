@@ -63,5 +63,5 @@ def inbox():
     return render_template('inbox.html')
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug=TRUE)
     

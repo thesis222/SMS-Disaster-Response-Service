@@ -18,6 +18,7 @@ manager.add_command('db', MigrateCommand)
 
 #Create Model
 class Inbox(db.Model):
+    __tablename__ = 'Inbox'
     id = db.Column('student_id', db.Integer, primary_key = True)
     level = db.Column(db.String(10))
     num = db.Column(db.String(20))
