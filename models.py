@@ -11,4 +11,4 @@ class Inbox(db.Model):
     lon = db.Column(db.Float(50))
 
     def __repr__(self):
-        return '<User %r>' % (self.level)
+        return '<Inbox %r>' % (self.level)

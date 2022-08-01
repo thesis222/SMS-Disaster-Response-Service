@@ -4,17 +4,19 @@ from flask_sqlalchemy import SQLAlchemy
 import sklearn, numpy
 import os
 import re
+from flask_migrate import Migrate
+
 
 app = Flask(__name__)
 #Add Database
 app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///inbox.db'
-app.config['SECRET_KEY'] = 'smsclassification'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Initialize Database
 db = SQLAlchemy(app)
 
-from models import Inbox
+from models import User
+
 
 @app.route('/')
 def home():
@@ -69,4 +71,3 @@ def inbox():
 
 if __name__=='__main__':
     app.run()
-    
