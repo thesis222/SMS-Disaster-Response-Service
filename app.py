@@ -1,8 +1,6 @@
 import pickle
 from flask import Flask, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
 import sklearn, numpy
 import os
 import re
@@ -16,10 +14,6 @@ app.config['SECRET_KEY'] = 'smsclassification'
 
 #Initialize Database
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-manager = Manager(app)
-manager.add_command('db', MigrateCommand)
 
 #Create Model
 class Inbox(db.Model):
@@ -92,6 +86,5 @@ def inbox():
 
 if __name__=='__main__':
     db.create_all()
-    manager.run()
     app.run()
     
