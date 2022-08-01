@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import sklearn, numpy
 import os
 import re
-import dbModel import *
+from dbModel import *
 
 
 app = Flask(__name__)
