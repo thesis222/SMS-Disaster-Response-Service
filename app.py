@@ -5,34 +5,16 @@ import sklearn, numpy
 import os
 import re
 
-
-
 app = Flask(__name__)
 #Add Database
-app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://ruvxlwwhcmievw:e0234ccf6a73ae505d15d4e6a816f1d0a386ed66b2eedee1d27cb395243e8739@ec2-54-161-255-125.compute-1.amazonaws.com:5432/ddk9t1ob7o082d'
+app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///inbox.db'
 app.config['SECRET_KEY'] = 'smsclassification'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Initialize Database
 db = SQLAlchemy(app)
 
-#Create Model
-class Inbox(db.Model):
-    __tablename__ = 'Inbox'
-    id = db.Column('student_id', db.Integer, primary_key = True)
-    level = db.Column(db.String(10))
-    num = db.Column(db.String(20))
-    message = db.Column(db.String(150))
-    lat = db.Column(db.Float(50))  
-    lon = db.Column(db.Float(50))
-
-    def __init__(self, level, num, message, lat, lon):
-        self.level = level
-        self.num = num
-        self.message = message
-        self.lat = lat
-        self.lon = lon
-
+from models import Inbox
 
 @app.route('/')
 def home():
@@ -86,6 +68,5 @@ def inbox():
     return render_template('inbox.html')
 
 if __name__=='__main__':
-    db.create_all()
     app.run()
     
