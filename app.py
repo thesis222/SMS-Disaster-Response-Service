@@ -41,7 +41,6 @@ class Inbox(db.Model):
 
 @app.route('/')
 def home():
-    print(os.environ['SECRET_KEY'])
     return render_template('home.html')  
     
 
