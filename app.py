@@ -10,13 +10,22 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 #Add Database
 app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:///inbox.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Initialize Database
 db = SQLAlchemy(app)
+migrate=Migrate(app, db)
 
-from models import User
+class Inbox(db.Model):
+    __tablename__ = 'Inbox'
+    id = db.Column('student_id', db.Integer, primary_key = True)
+    level = db.Column(db.String(10))
+    num = db.Column(db.String(20))
+    message = db.Column(db.String(150))
+    lat = db.Column(db.Float(50))  
+    lon = db.Column(db.Float(50))
 
+    def __repr__(self):
+        return '<Inbox %r>' % (self.level)
 
 @app.route('/')
 def home():
