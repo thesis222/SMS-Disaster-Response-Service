@@ -35,7 +35,7 @@ def home():
 def process():
     content_type = request.headers.get('Content-Type')
     if content_type !='application/json' :
-        return 'incompatible'
+        return {'status' : 'success'}
 
     #JSON to form
     message = request.json['message']
@@ -56,7 +56,7 @@ def process():
     smsmsg = Inbox(level= prediction, num = num, message = message, lat = lat, lon = lon )
     db.session.add(smsmsg)
     db.session.commit()
-    return prediction
+    return {'status' : 'success'}
 
     
 
