@@ -71,7 +71,7 @@ def load_model():
     with open(data_transform_file_name, 'rb') as infile:
         loaded_tfidfvec = pickle.load(infile)
         
-    return model, loaded_tfidfvec
+    return model, loaded_tfidfvec, {'status' : 'success'}
 
 @app.route('/inbox', methods=['GET'])
 def inbox():
