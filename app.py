@@ -35,15 +35,13 @@ def home():
 def process():
     content_type = request.headers.get('Content-Type')
     if content_type !='application/json' :
-        return 'incompatible', {'status' : 'success'}
+        return {'status' : 'incompatible'}
 
     #JSON to form
     message = request.json['message']
     num = request.json['number']
     lat = request.json['latitude']
     lon = request.json['longitude']
-
-    print(message, num, lat, lon)
     
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
@@ -56,10 +54,9 @@ def process():
     smsmsg = Inbox(level= prediction, num = num, message = message, lat = lat, lon = lon )
     db.session.add(smsmsg)
     db.session.commit()
-    return prediction, {'status' : 'success'}
+    return {'status' : 'success'}
 
     
-
 # Function
 def load_model():
     model_file_name = 'model/stack_model_p.pkl'
@@ -71,7 +68,7 @@ def load_model():
     with open(data_transform_file_name, 'rb') as infile:
         loaded_tfidfvec = pickle.load(infile)
         
-    return model, loaded_tfidfvec, {'status' : 'success'}
+    return model, loaded_tfidfvec, 
 
 @app.route('/inbox', methods=['GET'])
 def inbox():
