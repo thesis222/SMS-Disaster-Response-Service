@@ -9,7 +9,7 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 #Add Database
-app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://ruvxlwwhcmievw:e0234ccf6a73ae505d15d4e6a816f1d0a386ed66b2eedee1d27cb395243e8739@ec2-54-161-255-125.compute-1.amazonaws.com:5432/ddk9t1ob7o082d'
+app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql+pyscopg2://ruvxlwwhcmievw:e0234ccf6a73ae505d15d4e6a816f1d0a386ed66b2eedee1d27cb395243e8739@ec2-54-161-255-125.compute-1.amazonaws.com:5432/ddk9t1ob7o082d'
 
 #Initialize Database
 db = SQLAlchemy(app)
