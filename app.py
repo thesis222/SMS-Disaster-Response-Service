@@ -25,7 +25,7 @@ class Inbox(db.Model):
     lon = db.Column(db.Float(50))
 
     def __repr__(self):
-        return '<Inbox %r>' % (self.level)
+        return "<Inbox %r>" % self.level
 
 @app.route('/')
 def home():
@@ -55,7 +55,7 @@ def process():
     inbox = Inbox(level= prediction, num = num, message = message, lat = lat, lon = lon )
     db.session.add(inbox)
     db.session.commit()
-    return jsonify({'level': prediction , 'status' : 'success'})
+    return {'level': prediction , 'status' : 'success'}
 
     
 # Function
