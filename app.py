@@ -40,9 +40,9 @@ def process():
 
     #JSON to form
     message = request.json['message']
-    num = request.json['num']
-    lat = request.json['lat']
-    lon = request.json['lon']
+    num = request.json['number']
+    lat = request.json['latitude']
+    lon = request.json['longitude']
     
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
