@@ -1,5 +1,5 @@
 import pickle
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import sklearn, numpy
 import os
@@ -55,7 +55,7 @@ def process():
     inbox = Inbox(level= prediction, num = num, message = message, lat = lat, lon = lon )
     db.session.add(inbox)
     db.session.commit()
-    return {'level': prediction , 'status' : 'success'}
+    return jsonify({'level': prediction , 'status' : 'success'})
 
     
 # Function
