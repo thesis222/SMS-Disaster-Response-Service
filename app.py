@@ -54,7 +54,7 @@ def process():
     inbox = Inbox(level= prediction, num = num, message = message, lat = lat, lon = lon )
     db.session.add(inbox)
     db.session.commit()
-    return {'status' : 'success'}
+    return {'level': prediction , 'status' : 'success'}
 
     
 # Function
