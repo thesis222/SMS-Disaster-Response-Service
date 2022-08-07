@@ -24,14 +24,7 @@ class Inbox(db.Model):
     message = db.Column(db.String(150))
     lat = db.Column(db.Float(50))  
     lon = db.Column(db.Float(50))
-
-    def __init__(self, level, num, message, lat, lon):
-        self.level = level
-        self.num = num
-        self.message = message
-        self.lat = lat
-        self.lon = lon
-
+    
     def __repr__(self):
         return "<Inbox %r>" % self.level
 
