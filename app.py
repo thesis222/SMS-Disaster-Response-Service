@@ -10,6 +10,7 @@ from flask_migrate import Migrate
 app = Flask(__name__)
 #Add Database
 app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://kwsywgxyvxsepf:ce54802d0d68f7ab422f1811f1fdb43bb5afd636b4fd44321a6bd827f1a146e6@ec2-3-223-242-224.compute-1.amazonaws.com:5432/d2v8qu0kf0g8f4'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Initialize Database
 db = SQLAlchemy(app)
@@ -23,6 +24,13 @@ class Inbox(db.Model):
     message = db.Column(db.String(150))
     lat = db.Column(db.Float(50))  
     lon = db.Column(db.Float(50))
+
+    def __init__(self, level, num, message, lat, lon):
+        self.level = level
+        self.num = num
+        self.message = message
+        self.lat = lat
+        self.lon = lon
 
     def __repr__(self):
         return "<Inbox %r>" % self.level
