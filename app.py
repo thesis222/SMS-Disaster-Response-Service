@@ -51,8 +51,8 @@ def process():
 
     # Predict query
     prediction = model.predict(transformed_message)[0]
-    smsmsg = Inbox(level= prediction, num = num, message = message, lat = lat, lon = lon )
-    db.session.add(smsmsg)
+    inbox = Inbox(level= prediction, num = num, message = message, lat = lat, lon = lon )
+    db.session.add(inbox)
     db.session.commit()
     return {'status' : 'success'}
 
