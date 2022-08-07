@@ -16,6 +16,7 @@ db = SQLAlchemy(app)
 migrate=Migrate(app, db)
 
 class Inbox(db.Model):
+    __tablename__='inbox'
     id = db.Column(db.Integer, primary_key = True)
     level = db.Column(db.String(10))
     num = db.Column(db.String(20))
