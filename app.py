@@ -22,6 +22,9 @@ def home():
 
 @app.route('/process', methods=['POST'])
 def process():
+    content_type = request.headers.get('Content-Type')
+    if content_type !='application/json' :
+        return {'status' : 'incompatible'}
     
     #JSON to form
     message = request.json['message']
@@ -49,7 +52,6 @@ def process():
                 'longitude':longitude})
 
         return jsonify({'level': prediction , 'status' : 'success'})
-    return jsonify({'status' : 'incompatible'})
 
 # Function
 def load_model():
@@ -73,4 +75,4 @@ def table():
     return render_template('inbox.html', inbox = inbox )
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug=True, port=5000)
