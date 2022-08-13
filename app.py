@@ -64,13 +64,13 @@ def load_model():
         
     return model, loaded_tfidfvec 
 
-@app.route('/table', methods = ['GET'])
+@app.route('/inbox', methods = ['GET'])
 def table():
 
     if request.method == 'GET':
         inbox = (mongo.db.test.find())
 
-    return render_template('table.html', inbox = inbox )
+    return render_template('inbox.html', inbox = inbox )
 
 if __name__=='__main__':
     app.run()
