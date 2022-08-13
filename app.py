@@ -73,4 +73,4 @@ def table():
     return render_template('inbox.html', inbox = inbox )
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug=True)
