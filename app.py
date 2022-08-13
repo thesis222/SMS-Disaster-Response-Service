@@ -29,7 +29,6 @@ def process():
     #JSON to form
     message = request.json['message']
     sender = request.json ['sender']
-    receiver = request.json['receiver']
     latitude = request.json['latitude']
     longitude = request.json['longitude']
 
@@ -42,12 +41,11 @@ def process():
     # Predict query
     prediction = model.predict(transformed_message)[0]
 
-    if message and sender and receiver and latitude and longitude and request.method == 'POST':
+    if message and sender and latitude and longitude and request.method == 'POST':
         id = mongo.db.test.insert_one({
                 'level':prediction,
                 'message':message,
                 'sender':sender,
-                'receiver':receiver,
                 'latitude':latitude,
                 'longitude':longitude})
 
