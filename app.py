@@ -49,8 +49,10 @@ def process():
                 'latitude':latitude,
                 'longitude':longitude})
 
-        return jsonify({'level' : prediction, 'status' : 'success'})
         print(level, message, sender, latitude, longitude)
+
+        return jsonify({'level' : prediction, 'status' : 'success'})
+        
 
 # Function
 def load_model():
