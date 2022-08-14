@@ -43,13 +43,12 @@ def process():
 
     if message and sender and latitude and longitude and request.method == 'POST':
         id = mongo.db.test.insert_one({
-                'level':prediction,
                 'message':message,
                 'sender':sender,
                 'latitude':latitude,
                 'longitude':longitude})
 
-        return jsonify({'level': prediction , 'status' : 'success'})
+        return jsonify({'status' : 'success'})
 
 # Function
 #def load_model():
