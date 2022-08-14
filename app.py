@@ -10,14 +10,14 @@ app = Flask(__name__)
 #Database Name
 app.config['MONGO_DBNAME'] = "Testdb"
 #Database URI
-app.config['MONGO_URI'] = "mongodb+srv://root:<password>@cluster0.r3n21no.mongodb.net/Testdb?retryWrites=true&w=majority"
+app.config['MONGO_URI'] = "mongodb+srv://root:pass@cluster0.r3n21no.mongodb.net/Testdb?retryWrites=true&w=majority"
 
 mongo = PyMongo(app)
 
 
 @app.route('/')
 def home():
-    return render_template('home.html')  
+    return render_template('home.html')
     
 
 @app.route('/process', methods=['POST'])
