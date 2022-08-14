@@ -33,13 +33,13 @@ def process():
     longitude = request.json['longitude']
 
     # Load Model and DataTransform
-    model, loaded_tfidfvec = load_model()
+    #model, loaded_tfidfvec = load_model()
 
     # Transform Data
-    transformed_message = loaded_tfidfvec.transform([message])
+    #transformed_message = loaded_tfidfvec.transform([message])
 
     # Predict query
-    prediction = model.predict(transformed_message)[0]
+    #prediction = model.predict(transformed_message)[0]
 
     if message and sender and latitude and longitude and request.method == 'POST':
         id = mongo.db.test.insert_one({
@@ -52,17 +52,17 @@ def process():
         return jsonify({'level': prediction , 'status' : 'success'})
 
 # Function
-def load_model():
-    model_file_name = 'model/stack_model_p.pkl'
-    data_transform_file_name = 'model/tfidf_params.pkl'
+#def load_model():
+    #model_file_name = 'model/stack_model_p.pkl'
+    #data_transform_file_name = 'model/tfidf_params.pkl'
     
-    with open(model_file_name, 'rb') as infile:
-        model = pickle.load(infile)
+    #with open(model_file_name, 'rb') as infile:
+        #model = pickle.load(infile)
 
-    with open(data_transform_file_name, 'rb') as infile:
-        loaded_tfidfvec = pickle.load(infile)
+    #with open(data_transform_file_name, 'rb') as infile:
+        #loaded_tfidfvec = pickle.load(infile)
         
-    return model, loaded_tfidfvec 
+    #return model, loaded_tfidfvec 
 
 @app.route('/inbox', methods = ['GET'])
 def table():
