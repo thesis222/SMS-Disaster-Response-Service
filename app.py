@@ -28,7 +28,7 @@ def process():
     
     #JSON to form
     message = request.json['message']
-    sender = request.json ['sender']
+    sender = request.json['sender']
     latitude = request.json['latitude']
     longitude = request.json['longitude']
 
@@ -50,6 +50,7 @@ def process():
                 'longitude':longitude})
 
         return jsonify({'level' : prediction, 'status' : 'success'})
+        return print (message, sender, latitude, longitude)
 
 # Function
 def load_model():
