@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 import pickle
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -31,6 +32,8 @@ def process():
 
     print(message, sender, latitude, longitude)
 
+    # DateTime
+    datetime_now = datetime.now()
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
 
@@ -46,9 +49,8 @@ def process():
                 'message':message,
                 'sender':sender,
                 'latitude':latitude,
-                'longitude':longitude})
-
-        
+                'longitude':longitude,
+                'datetime':datetime_now})
 
         return jsonify({'level' : prediction, 'status' : 'success'})
 
