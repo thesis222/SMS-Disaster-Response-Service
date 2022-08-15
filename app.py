@@ -49,9 +49,11 @@ def process():
                 'latitude':latitude,
                 'longitude':longitude})
 
-        print(message, sender, latitude, longitude)
+        
 
         return jsonify({'level' : prediction, 'status' : 'success'})
+
+    print(message, sender, latitude, longitude)
         
 
 # Function
