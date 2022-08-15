@@ -22,15 +22,14 @@ def home():
 
 @app.route('/process', methods=['POST'])
 def process():
-    content_type = request.headers.get('Content-Type')
-    if content_type !='application/json' :
-        return {'status' : 'incompatible'}
     
     #JSON to form
     message = request.json['message']
     sender = request.json['sender']
     latitude = request.json['latitude']
     longitude = request.json['longitude']
+
+    print(message, sender, latitude, longitude)
 
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
@@ -53,7 +52,6 @@ def process():
 
         return jsonify({'level' : prediction, 'status' : 'success'})
 
-    print(message, sender, latitude, longitude)
         
 
 # Function
