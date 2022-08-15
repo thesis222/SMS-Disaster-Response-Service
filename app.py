@@ -34,6 +34,7 @@ def process():
 
     # DateTime
     datetime_now = datetime.now()
+    dateandtime = datetime_now.strftime("%d-%m-%Y %H:%M:%S")
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
 
@@ -50,7 +51,7 @@ def process():
                 'sender':sender,
                 'latitude':latitude,
                 'longitude':longitude,
-                'datetime':datetime_now})
+                'datetime':dateandtime})
 
         return jsonify({'level' : prediction, 'status' : 'success'})
 
