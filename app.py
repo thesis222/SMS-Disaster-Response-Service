@@ -4,6 +4,7 @@ from bson.json_util import dumps
 from bson.objectid import ObjectId
 import pickle
 from datetime import datetime
+import pytz
 
 
 app = Flask(__name__)
@@ -33,8 +34,10 @@ def process():
     print(message, sender, latitude, longitude)
 
     # DateTime
-    datetime_now = datetime.now()
+    PHT = pytz.timezone('Asia/Manila')
+    datetime_now = datetime.now(PHT)
     dateandtime = datetime_now.strftime("%d-%m-%Y %H:%M:%S")
+    
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
 
