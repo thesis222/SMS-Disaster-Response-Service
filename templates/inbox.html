@@ -187,25 +187,21 @@ nav ul li button:hover{
                     <option value="all">All</option>
                     </select>
                 </th>
-                  <th col-index = 2>Messages</th>
-                  <th col-index = 3>Coordinates</th>        
+                  <th col-index = 2>Sender</th>
+                  <th col-index = 3>Messages</th>    
+                  <th col-index = 4>Coordinates</th> 
+                  <th col-index = 5></th>   
               </thead>
               <tbody>
               <tr>
-                  <td>Moderate</td>
-                  <td></td>
-                  <td></td>
+                {% for test in inbox %}
+                <td>{{ test['level']}}</td>
+                <td>{{ test['sender']}}</td>
+                <td>{{ test['message']}}</td>
+                <td>{{ test['latitude']}} , {{ test['longitude']}}</td>
+                <td>{{ test['datetime']}}</td>
               </tr>
-              <tr>
-                  <td>Low</td>
-                  <td></td>
-                  <td></td>
-              </tr>
-              <tr>
-                  <td>High</td>
-                  <td></td>
-                  <td></td>
-              </tr>
+              {% endfor %}
               </tbody>
           </table>
         </div>
