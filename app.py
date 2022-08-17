@@ -70,7 +70,7 @@ def load_model():
         
     return model, loaded_tfidfvec 
 
-@app.route('/inbox', methods = ['GET'])
+@app.route('/inbox', methods = ['GET', 'POST'])
 def table():
 
     if request.method == 'GET':
