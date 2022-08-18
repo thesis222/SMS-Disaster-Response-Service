@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, url_for, session
+from flask import Flask, jsonify, request, render_template, url_for, session, redirect
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
@@ -80,6 +80,11 @@ def table():
         inbox = (mongo.db.test.find())
 
     return render_template('inbox.html', inbox = inbox )
+
+@app.route('/delete/<id>')
+def delete(id):
+    mongo.db.test.delete_one({"_id":ObjectId(id)})
+    return redirect('/inbox')
 
 if __name__=='__main__':
     app.run(debug=True, port=5000)

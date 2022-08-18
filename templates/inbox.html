@@ -190,7 +190,8 @@ nav ul li button:hover{
                   <th col-index = 2>Sender</th>
                   <th col-index = 3>Messages</th>    
                   <th col-index = 4>Coordinates</th> 
-                  <th col-index = 5>Date & Time</th>   
+                  <th col-index = 5>Date & Time</th> 
+                  <th col-index = 6>Delete</th>  
               </thead>
               <tbody>
               <tr>
@@ -200,6 +201,13 @@ nav ul li button:hover{
                 <td>{{ test['message']}}</td>
                 <td>{{ test['latitude']}} , {{ test['longitude']}}</td>
                 <td>{{ test['datetime']}}</td>
+                <td>
+                  <a href="{{url_for ('delete', id = test._id)}}">
+                    <button type="button">
+                      Delete
+                    </button>
+                  </a>
+                </td>
               </tr>
               {% endfor %}
               </tbody>
