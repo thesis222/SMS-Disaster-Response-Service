@@ -26,6 +26,13 @@ header
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
 }
 
+header img{
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    margin-left: 50px;
+}
+
 nav{
   width: 100%;
   font-family: Calibri;
@@ -100,7 +107,6 @@ nav ul li button:hover{
   }
   
   table th{
-    position: sticky; 
     top: 0px;
     background-color: white;
     color: black;
@@ -149,16 +155,19 @@ nav ul li button:hover{
     height: 25px;
     font-size: 12px;
   }
+
+
 </style>
 </head>
 <body>
     <header>
+      <img src="../static/images/logo_smsdrs.png" >
         <nav>
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="https://smsdrs2022.herokuapp.com/">
                         <button class="menu"> 
-                            Messages 
+                            Home 
                         </button>
                     </a>
                 </li> 
@@ -213,6 +222,7 @@ nav ul li button:hover{
       </div>
       </section>
     </center>
+
 </body>
 <script>
 
