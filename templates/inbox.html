@@ -67,7 +67,7 @@ nav ul li button:hover{
 
 .outer-wrapper {
   
-    margin-top: 100px;
+    margin-top: 70px;
     margin-right: 20px;
     border: .5px solid black;
     border-radius: 4px;
@@ -134,7 +134,7 @@ nav ul li button:hover{
     border: 2px solid black;
     border-radius: 10px;
     background: blanchedalmond;  
-    margin-left: 25px;
+    margin-left: 40px;
     margin-right: -25px;
     cursor: pointer;
     transition: 0.2s ease ;
@@ -148,9 +148,9 @@ nav ul li button:hover{
   table th select {
     margin-left: 5px;
     padding-left: 5px;
-    width: 80px;
+    width: 50px;
     height: 25px;
-    font-size: 16px;
+    font-size: 12px;
   }
 </style>
 </head>
@@ -182,7 +182,7 @@ nav ul li button:hover{
           <section class="table-wrapper">
           <table id="emp-table">
               <thead>
-                <th col-index = 1>Level
+                <th col-index = 1 style="width: 40px">Level
                     <select class="table-filter" onchange="filter_rows()">
                     <option value="all">All</option>
                     </select>
@@ -196,7 +196,7 @@ nav ul li button:hover{
               <tbody>
               <tr>
                 {% for test in inbox %}
-                <td>{{ test['level']}}</td>
+                <td style="text-align:center">{{ test['level']}}</td>
                 <td>{{ test['sender']}}</td>
                 <td>{{ test['message']}}</td>
                 <td>{{ test['latitude']}} , {{ test['longitude']}}</td>
