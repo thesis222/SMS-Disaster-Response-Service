@@ -6,6 +6,7 @@ import pickle
 import folium
 from datetime import datetime
 import pytz
+from pandas import DataFrame
 
 
 app = Flask(__name__)
