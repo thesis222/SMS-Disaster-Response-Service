@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 import pickle
+import folium
 from datetime import datetime
 import pytz
 
@@ -85,6 +86,76 @@ def table():
 def delete(id):
     mongo.db.test.delete_one({"_id":ObjectId(id)})
     return redirect('/inbox')
+
+@app.route('/map')
+def base():
+
+    # this is base map
+    map = folium.Map(
+        location=[13.7565, 121.0583],
+        zoom_start=11
+    )
+
+    #Dataframe
+    low = DataFrame(list(mongo.db.test.find({"level" : "Low"})))
+    moderate = DataFrame(list(mongo.db.test.find({"level" : "Moderate"})))
+    high = DataFrame(list(mongo.db.test.find({"level" : "High"})))
+
+    #Marker
+    #Low
+    for i in range (0, len(low)):
+
+            html=f"""
+            <h1>Low</h1>
+            <p><b>Sender:</b> {low.iloc[i]['sender']}</p>
+            <p><b>Message:</b> {low.iloc[i]['message']}</p>
+            """
+            iframe = folium.IFrame(html=html, width=300, height=170)
+            popup = folium.Popup(iframe, max_width = 1000)
+
+            folium.Marker(
+                location = [low.iloc[i]['latitude'], low.iloc[i]['longitude']],
+                popup = popup,
+                icon = folium.Icon(color = 'green')
+            ).add_to(map)
+
+    #Moderate
+    for i in range (0, len(moderate)):
+
+            html=f"""
+            <h1>Moderate</h1>
+            <p><b>Sender:</b> {moderate.iloc[i]['sender']}</p>
+            <p><b>Message:</b> {moderate.iloc[i]['message']}</p>
+            """
+            iframe = folium.IFrame(html=html, width=300, height=170)
+            popup = folium.Popup(iframe, max_width = 1000)
+
+            folium.Marker(
+                location = [moderate.iloc[i]['latitude'], moderate.iloc[i]['longitude']],
+                popup = popup,
+                icon = folium.Icon(color = 'orange')
+            ).add_to(map)
+
+    #High
+    for i in range (0, len(high)):
+
+            html=f"""
+            <h1>High</h1>
+            <p><b>Sender:</b> {high.iloc[i]['sender']}</p>
+            <p><b>Message:</b> {high.iloc[i]['message']}</p>
+            """
+            iframe = folium.IFrame(html=html, width=300, height=170)
+            popup = folium.Popup(iframe, max_width = 1000)
+
+            folium.Marker(
+                location = [high.iloc[i]['latitude'], high.iloc[i]['longitude']],
+                popup = popup,
+                icon = folium.Icon(color = 'red')
+            ).add_to(map)
+
+    
+
+    return map._repr_html_()
 
 if __name__=='__main__':
     app.run(debug=True, port=5000)
