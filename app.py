@@ -110,7 +110,7 @@ def base():
             <h1>Low</h1>
             <p><b>Sender:</b> {low.iloc[i]['sender']}</p>
             <p><b>Message:</b> {low.iloc[i]['message']}</p>
-            <p><b>Message:</b> {low.iloc[i]['datetime']}</p>
+            <p><b>Date & Time:</b> {low.iloc[i]['datetime']}</p>
             """
             iframe = folium.IFrame(html=html, width=300, height=170)
             popup = folium.Popup(iframe, max_width = 1000)
@@ -128,7 +128,7 @@ def base():
             <h1>Moderate</h1>
             <p><b>Sender:</b> {moderate.iloc[i]['sender']}</p>
             <p><b>Message:</b> {moderate.iloc[i]['message']}</p>
-            <p><b>Message:</b> {moderate.iloc[i]['datetime']}</p>
+            <p><b>Date & Time:</b> {moderate.iloc[i]['datetime']}</p>
             """
             iframe = folium.IFrame(html=html, width=300, height=170)
             popup = folium.Popup(iframe, max_width = 1000)
@@ -146,7 +146,7 @@ def base():
             <h1>High</h1>
             <p><b>Sender:</b> {high.iloc[i]['sender']}</p>
             <p><b>Message:</b> {high.iloc[i]['message']}</p>
-            <p><b>Message:</b> {high.iloc[i]['datetime']}</p>
+            <p><b>Date & Time:</b> {high.iloc[i]['datetime']}</p>
             """
             iframe = folium.IFrame(html=html, width=300, height=170)
             popup = folium.Popup(iframe, max_width = 1000)
