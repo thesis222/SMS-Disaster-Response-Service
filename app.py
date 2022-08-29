@@ -7,6 +7,7 @@ import folium
 from datetime import datetime
 import pytz
 from pandas import DataFrame
+import string
 
 
 app = Flask(__name__)
@@ -43,8 +44,13 @@ def process():
     # Load Model and DataTransform
     model, loaded_tfidfvec = load_model()
 
+    #Preprocess
+    clean_msg = message.translate(str.maketrans('', '', string.punctuation))
+
+    msg_lower = clean_msg.lower()
+
     # Transform Data
-    transformed_message = loaded_tfidfvec.transform([message])
+    transformed_message = loaded_tfidfvec.transform([msg_lower])
 
     # Predict query
     prediction = model.predict(transformed_message)[0]
@@ -65,7 +71,7 @@ def process():
 # Function
 def load_model():
     model_file_name = 'model/stack_model_p.pkl'
-    data_transform_file_name = 'model/tfidf_params.pkl'
+    data_transform_file_name = 'model/tfidf_final.pkl'
     
     with open(model_file_name, 'rb') as infile:
         model = pickle.load(infile)
