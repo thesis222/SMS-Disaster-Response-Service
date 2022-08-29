@@ -70,8 +70,8 @@ def process():
 
 # Function
 def load_model():
-    model_file_name = 'model/old model/stack_model_p.pkl'
-    data_transform_file_name = 'model/old model/tfidf_params.pkl'
+    model_file_name = 'model/stack_model_p.pkl'
+    data_transform_file_name = 'model/tfidf_final.pkl'
     
     with open(model_file_name, 'rb') as infile:
         model = pickle.load(infile)
