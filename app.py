@@ -45,12 +45,14 @@ def process():
     model, loaded_tfidfvec = load_model()
 
     #Preprocess
+    
     clean_msg = message.translate(str.maketrans('', '', string.punctuation))
 
     msg_lower = clean_msg.lower()
+    msg_help = msg_lower.replace("tulong", "")
 
     # Transform Data
-    transformed_message = loaded_tfidfvec.transform([msg_lower])
+    transformed_message = loaded_tfidfvec.transform([msg_help])
 
     # Predict query
     prediction = model.predict(transformed_message)[0]
