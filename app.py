@@ -57,6 +57,8 @@ def process():
     # Predict query
     prediction = model.predict(transformed_message)[0]
 
+    status = "message"
+
     if message and sender and latitude and longitude and request.method == 'POST':
         id = mongo.db.test.insert_one({
                 'level':prediction,
@@ -64,7 +66,8 @@ def process():
                 'sender':sender,
                 'latitude':latitude,
                 'longitude':longitude,
-                'datetime':dateandtime})
+                'datetime':dateandtime,
+                'status': status })
 
         return jsonify({'level' : prediction, 'status' : 'success'})
 
@@ -89,7 +92,7 @@ def load_model():
 def table():
 
     if request.method == 'GET':
-        inbox = (mongo.db.test.find())
+        inbox = (mongo.db.test.find({"status": "message"}))
 
     return render_template('inbox.html', inbox = inbox )
 #Update for Inbox
