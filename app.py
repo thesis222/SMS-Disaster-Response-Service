@@ -83,6 +83,8 @@ def load_model():
         
     return model, loaded_tfidfvec 
 
+#   INBOX PAGE-------------
+#Table for Inbox
 @app.route('/inbox', methods = ['GET', 'POST'])
 def table():
 
@@ -90,12 +92,74 @@ def table():
         inbox = (mongo.db.test.find())
 
     return render_template('inbox.html', inbox = inbox )
+#Update for Inbox
+@app.route('/update/<id>')
+def update(id):
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "on going" }})
+    return redirect('/inbox')
+#Delete for Inbox
+@app.route('/delete1/<id>')
+def delete1(id):
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "delete" }})
+    return redirect('/inbox')
 
+#   ON GOING PAGE-----------
+#Table for On Going
+@app.route('/ongoing', methods = ['GET'])
+def ongoing():
+
+    if request.method == 'GET':
+        inbox = (mongo.db.test.find({"status": "on going"}))
+
+    return render_template('on_going.html', inbox = inbox )
+#Update for On Going
+@app.route('/update1/<id>')
+def update1(id):
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "responded" }})
+    return redirect('/ongoing')
+#Delete for On Going
+@app.route('/delete2/<id>')
+def delete2(id):
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "delete" }})
+    return redirect('/ongoing')
+
+#   RESPONDED PAGE----------
+#Table for Responded
+@app.route('/responded', methods = ['GET'])
+def responded():
+
+    if request.method == 'GET':
+        inbox = (mongo.db.test.find({"status": "responded"}))
+
+    return render_template('responded.html', inbox = inbox )
+
+#Delete for Responeded
+@app.route('/delete3/<id>')
+def delete3(id):
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "delete" }})
+    return redirect('/responded')
+
+#   ARCHIVED PAGE
+#Table for Archive
+@app.route('/archived', methods = ['GET'])
+def archived():
+
+    if request.method == 'GET':
+        inbox = (mongo.db.test.find({"status": "delete"}))
+
+    return render_template('archived.html', inbox = inbox )
+#Recover
+@app.route('/recover/<id>')
+def recover(id):
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "message" }})
+    return redirect('/archived')
+#Permanent Delete
 @app.route('/delete/<id>')
 def delete(id):
     mongo.db.test.delete_one({"_id":ObjectId(id)})
-    return redirect('/inbox')
+    return redirect('/archived')
 
+#   MAP-----------
 @app.route('/map')
 def base():
 
