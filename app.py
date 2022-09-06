@@ -114,7 +114,7 @@ def ongoing():
     if request.method == 'GET':
         inbox = (mongo.db.test.find({"status": "on going"}))
 
-    return render_template('on_going.html', inbox = inbox )
+    return render_template('ongoing.html', inbox = inbox )
 #Update for On Going
 @app.route('/update1/<id>')
 def update1(id):
