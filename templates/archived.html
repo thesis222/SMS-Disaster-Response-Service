@@ -330,7 +330,7 @@ border-radius: 10px;
                     <option value="all">All</option>
                     </select>
                 </th>
-                  <th col-index = 2 style="padding-left: 50px; padding-right: 50px;">Sender</th>
+                  <th col-index = 2 style="padding-left: 50px; padding-right: 50px;">Status</th>
                   <th col-index = 3 style="padding-left: 60px; padding-right: 60px;">Messages</th>    
                   <th col-index = 4 style="padding-left: 60px; padding-right: 60px;">Coordinates</th> 
                   <th col-index = 5 style="padding-left: 50px; padding-right: 50px;">Date & Time</th> 
@@ -340,14 +340,14 @@ border-radius: 10px;
               <tr>
                 {% for test in inbox %}
                 <td style="text-align:center">{{ test['level']}}</td>
-                <td>{{ test['sender']}}</td>
+                <td>{{ test['status']}}</td>
                 <td>{{ test['message']}}</td>
                 <td style="text-align:center">{{ test['latitude']}} , {{ test['longitude']}}</td>
                 <td style="text-align:center">{{ test['datetime']}}</td>
                 <td>
                   <a href="{{url_for ('recover', id = test._id)}}">
                     <button type="button" class="status">
-                        Recover
+                        Restore
                     </button>
                   </a>
                   <a href="{{url_for ('delete', id = test._id)}}", onclick="return confirm('Are you sure you want to delete?')">

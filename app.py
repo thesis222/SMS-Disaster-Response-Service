@@ -57,7 +57,8 @@ def process():
     # Predict query
     prediction = model.predict(transformed_message)[0]
 
-    status = "message"
+    status = "Message"
+    dlt = "nd"
 
     if message and sender and latitude and longitude and request.method == 'POST':
         id = mongo.db.test.insert_one({
@@ -67,9 +68,10 @@ def process():
                 'latitude':latitude,
                 'longitude':longitude,
                 'datetime':dateandtime,
-                'status': status })
+                'status': status,
+                "delete": dlt })
 
-        return jsonify({'level' : prediction, 'status' : 'success'})
+        return jsonify({'level' : prediction})
 
         
 
@@ -92,18 +94,18 @@ def load_model():
 def table():
 
     if request.method == 'GET':
-        inbox = (mongo.db.test.find({"status": "message"}))
+        inbox = (mongo.db.test.find({"status": "Message", "delete" : "nd" }))
 
     return render_template('inbox.html', inbox = inbox )
 #Update for Inbox
 @app.route('/update/<id>')
 def update(id):
-    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "on going" }})
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "On Going" }})
     return redirect('/inbox')
 #Delete for Inbox
 @app.route('/delete1/<id>')
 def delete1(id):
-    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "delete" }})
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "delete" : "delete" }})
     return redirect('/inbox')
 
 #   ON GOING PAGE-----------
@@ -112,18 +114,18 @@ def delete1(id):
 def ongoing():
 
     if request.method == 'GET':
-        inbox = (mongo.db.test.find({"status": "on going"}))
+        inbox = (mongo.db.test.find({"status": "On Going", "delete" : "nd" }))
 
     return render_template('ongoing.html', inbox = inbox )
 #Update for On Going
 @app.route('/update1/<id>')
 def update1(id):
-    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "responded" }})
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "Responded" }})
     return redirect('/ongoing')
 #Delete for On Going
 @app.route('/delete2/<id>')
 def delete2(id):
-    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "delete" }})
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "delete" : "delete" }})
     return redirect('/ongoing')
 
 #   RESPONDED PAGE----------
@@ -132,14 +134,14 @@ def delete2(id):
 def responded():
 
     if request.method == 'GET':
-        inbox = (mongo.db.test.find({"status": "responded"}))
+        inbox = (mongo.db.test.find({"status": "Responded", "delete" : "nd" }))
 
     return render_template('responded.html', inbox = inbox )
 
 #Delete for Responeded
 @app.route('/delete3/<id>')
 def delete3(id):
-    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "delete" }})
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "delete" : "delete" }})
     return redirect('/responded')
 
 #   ARCHIVED PAGE
@@ -148,13 +150,13 @@ def delete3(id):
 def archived():
 
     if request.method == 'GET':
-        inbox = (mongo.db.test.find({"status": "delete"}))
+        inbox = (mongo.db.test.find({ "delete" : "delete" }))
 
     return render_template('archived.html', inbox = inbox )
 #Recover
 @app.route('/recover/<id>')
 def recover(id):
-    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "status" : "message" }})
+    mongo.db.test.find_one_and_update({"_id":ObjectId(id)}, {"$set": { "delete" : "nd" }})
     return redirect('/archived')
 #Permanent Delete
 @app.route('/delete/<id>')
